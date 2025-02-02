@@ -72,12 +72,12 @@
 
                 <h3>1. Particle Background</h3>
                 <p>
-                    I used the popular and free particles.js to create the interactive background. I had to experiment with a lot of settings to actually get performant results, but eventually I figured out that fewer particles with subtle movements worked best:
+                    I used the popular and free particles.js to create the interactive background. I had to experiment a lot with the settings - at first I tried using 200 particles but it lagged so badly on my old laptop lol. After some trial and error around 2 AM (when I do my best coding 😅), I found that 80 particles with subtle movements worked perfectly:
                 </p>
                 <pre><code class="language-javascript">
 particlesJS('particles-js', {
     particles: {
-        number: { value: 80 },
+        number: { value: 80 },  // Started with 200, way too much!
         color: { value: '#9c27b0' },
         opacity: {
             value: 0.5,
@@ -89,11 +89,10 @@ particlesJS('particles-js', {
 
                 <h3>2. Custom Audio Player</h3>
                 <p>
-                    I wanted background music but with a modern look that started off muted. The audio player uses vanilla JavaScript for controls:
+                    I wanted background music but with a modern look that started off muted. Fun fact: I spent like 3 hours trying to make a fancy visualizer before giving up and going with this simpler design that actually works better:
                 </p>
                 <pre><code class="language-javascript">
-// Basic audio controls
-
+// Basic audio controls - keeping it simple after the visualizer disaster
 playPauseBtn.addEventListener('click', () => {
     if (bgAudio.paused) {
         bgAudio.play();
@@ -106,10 +105,9 @@ playPauseBtn.addEventListener('click', () => {
 
                 <h3>3. Smooth Animations</h3>
                 <p>
-                    The animations are a mix of CSS and JavaScript. For card animations, I used this approach:
+                    The animations are a mix of CSS and JavaScript. For card animations, I used this approach after seeing something similar on a Discord bot website (shoutout to MEE6's website for the inspiration):
                 </p>
                 <pre><code class="language-css">
-
 .project-card {
     transition: transform 0.3s ease;
     animation: float 6s ease-in-out infinite;
@@ -119,19 +117,57 @@ playPauseBtn.addEventListener('click', () => {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
 }</code></pre>
+
+                <h3>4. Tilt and Hover Effects</h3>
+                <p>
+                    One of my favorite features is the tilt effect on the cards. I found this cool library called Vanilla-Tilt.js while browsing the webdev subreddit at 3 AM because I was bored. After messing around with the settings for way too long, I got it working:
+                </p>
+                <pre><code class="language-javascript">
+// The tilt effect in question
+VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+    max: 5,       // tried 15 first, made me dizzy lol
+    speed: 400,   // 1000 was WAY too slow
+    glare: true,  // looks sick with the purple theme
+    "max-glare": 0.2,
+});</code></pre>
+
+                <p>
+                    For the hover effects on headings (like the game titles), I wanted something subtle and smooth. After trying different things, I settled on this clean underline animation:
+                </p>
+                <pre><code class="language-css">
+/* The hover bar effect I saw everywhere on the internet */
+
+h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;  /* -2px was too close, -8px was too far */
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+h4:hover::after {
+    width: 100%;
+}</code></pre>
+
+                <p>
+                    Getting this to work with the particle background was a pain because of z-index issues. Spent a whole evening debugging why the hover effect was appearing behind everything else. But I just needed to add position: relative to the parent element.
+                </p>
             </section>
 
             <!-- Challenges and Solutions -->
             <section class="post-section">
                 <h2>Challenges I Faced</h2>
                 <p>
-                    Building this portfolio was unnecessarily hard. Here are some problems I encountered and how I eventually solved them:
+                    Building this portfolio was unnecessarily hard, mostly because I kept trying to add "one more cool feature" at 2 AM. Here are some problems I encountered and how I eventually solved them:
                 </p>
                 <ul>
-
-                    <li>The particle effect caused bad performance on mobile. I reduced the particle count and made them slower.</li>
-                    <li>Getting the custom cursor to mesh with the rest of the site was a pain. I ended up using a follower effect with a small delay.</li>
-                    <li>I wanted the audio player to work across different browsers while still being minimal. I ended up using a simple vanilla JS audio player.</li>
+                    <li>The particle effect caused bad performance on mobile. I reduced the particle count and made them slower after my friend's phone nearly melted trying to load 200 particles.</li>
+                    <li>Getting the custom cursor to mesh with the rest of the site was a pain. I ended up using a follower effect with a small delay after watching way too many cursor effect tutorials.</li>
+                    <li>The audio player was a journey - first tried building a full visualizer (fail), then a spectrum analyzer (another fail), finally just went with a simple player that actually works.</li>
+                    <li>The tilt effect initially made everything look like it was having a seizure because I set the max tilt to 25 degrees. Had to tone it down A LOT.</li>
                 </ul>
             </section>
 
