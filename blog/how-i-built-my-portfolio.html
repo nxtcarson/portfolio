@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How I Built My Portfolio - Carson's Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/blog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <!-- Particle Container -->
+    <div class="particles" id="particles-js"></div>
+
+    <!-- Custom Cursor Elements -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-follower"></div>
+
+    <div class="container">
+        <!-- Blog Post Header -->
+        <header class="blog-header">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Blog
+            </a>
+            <div class="post-meta">
+                <span class="post-date">February 2, 2025</span>
+                <span class="post-category">Web Development</span>
+            </div>
+            <h1>Building My Portfolio Website</h1>
+            <div class="post-tags">
+
+                <span>#webdev</span>
+                <span>#portfolio</span>
+                <span>#frontend</span>
+            </div>
+        </header>
+
+        <!-- Blog Post Content -->
+        <article class="blog-post-content">
+            <!-- Introduction -->
+            <section class="post-section">
+                <p>
+                    After spending weeks learning web development through projects, we officially started web development in class where I had an assignment in my software engineering class to make a portfolio. I wanted something unique that would stand out while still showing my skills and projects.
+                </p>
+            </section>
+
+            <!-- Design Philosophy -->
+            <section class="post-section">
+                <h2>Design Philosophy</h2>
+                <p>
+                    At the start of making the portfolio, I picked a majority black theme with a purple accent color because purple is my favorite color and black is easier on the eyes. I added a lot of gradients and animations to make the site more interesting and just in general look cooler to me. Here's the rundown of what I wanted to achieve:
+                </p>
+                <ul>
+                    <li>Clean, minimalist layout that reserved room for actual content while still being cool looking.</li>
+                    <li>Interactive elements that responded to users</li>
+                    <li>Smooth animations that don't disorient viewers</li>
+                    <li>A unique color scheme that is easy on the eyes</li>
+                </ul>
+            </section>
+
+
+            <!-- Technical Implementation -->
+            <section class="post-section">
+                <h2>Building the Core Features</h2>
+                <p>
+                    Some of the more important features I implemented were:
+                </p>
+
+                <h3>1. Particle Background</h3>
+                <p>
+                    I used the popular and free particles.js to create the interactive background. I had to experiment with a lot of settings to actually get performant results, but eventually I figured out that fewer particles with subtle movements worked best:
+                </p>
+                <pre><code class="language-javascript">
+particlesJS('particles-js', {
+    particles: {
+        number: { value: 80 },
+        color: { value: '#9c27b0' },
+        opacity: {
+            value: 0.5,
+            random: true
+        }
+        // ... more configuration
+    }
+});</code></pre>
+
+                <h3>2. Custom Audio Player</h3>
+                <p>
+                    I wanted background music but with a modern look that started off muted. The audio player uses vanilla JavaScript for controls:
+                </p>
+                <pre><code class="language-javascript">
+// Basic audio controls
+
+playPauseBtn.addEventListener('click', () => {
+    if (bgAudio.paused) {
+        bgAudio.play();
+        playPauseBtn.innerHTML = '&lt;i class="fas fa-pause">&lt;/i>';
+    } else {
+        bgAudio.pause();
+        playPauseBtn.innerHTML = '&lt;i class="fas fa-play">&lt;/i>';
+    }
+});</code></pre>
+
+                <h3>3. Smooth Animations</h3>
+                <p>
+                    The animations are a mix of CSS and JavaScript. For card animations, I used this approach:
+                </p>
+                <pre><code class="language-css">
+
+.project-card {
+    transition: transform 0.3s ease;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}</code></pre>
+            </section>
+
+            <!-- Challenges and Solutions -->
+            <section class="post-section">
+                <h2>Challenges I Faced</h2>
+                <p>
+                    Building this portfolio was unnecessarily hard. Here are some problems I encountered and how I eventually solved them:
+                </p>
+                <ul>
+
+                    <li>The particle effect caused bad performance on mobile. I reduced the particle count and made them slower.</li>
+                    <li>Getting the custom cursor to mesh with the rest of the site was a pain. I ended up using a follower effect with a small delay.</li>
+                    <li>I wanted the audio player to work across different browsers while still being minimal. I ended up using a simple vanilla JS audio player.</li>
+                </ul>
+            </section>
+
+
+            <!-- Future Improvements -->
+            <section class="post-section">
+                <h2>What's Next?</h2>
+                <p>
+                    I'm very happy with how it turned out, but there were things I would change, and probably will soon:
+                </p>
+                <ul>
+                    <li>Adding more interactive project previews</li>
+                    <li>Dark/light theme toggle</li>
+                    <li>Creating more dynamic content sections</li>
+                </ul>
+            </section>
+
+            <!-- Conclusion -->
+            <section class="post-section">
+                <h2>Final Thoughts</h2>
+                <p>
+                    Building this portfolio has been very fun. It allowed me to finally implement the things that I've been seeing on so many websites throughout my life on the internet. I'm proud to say that I have successfully emulated the websites for services that I admired years ago.
+                </p>
+            </section>
+        </article>
+
+
+        <!-- Author Bio -->
+        <div class="author-bio">
+            <img src="../images/profile.jpg" alt="Carson" class="author-image">
+            <div class="author-info">
+                <h3>Written by Carson</h3>
+                <p>Web developer focused on creating helpful and engaging websites. I love exploring new technologies and sharing what interests me, along with what I've learned.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <footer>
+        <p>&copy; 2024 Carson. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+        // Custom cursor effect
+        const cursor = document.querySelector('.custom-cursor');
+        const cursorFollower = document.querySelector('.custom-cursor-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                cursorFollower.style.left = e.clientX + 'px';
+                cursorFollower.style.top = e.clientY + 'px';
+            }, 50);
+        });
+
+        document.addEventListener('mousedown', () => {
+            cursor.style.transform = 'scale(0.8)';
+            cursorFollower.style.transform = 'scale(0.5)';
+        });
+
+        document.addEventListener('mouseup', () => {
+            cursor.style.transform = 'scale(1)';
+            cursorFollower.style.transform = 'scale(1)';
+        });
+
+        // Hover effect for clickable elements
+        const clickables = document.querySelectorAll('a, button, code');
+        clickables.forEach(element => {
+            element.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+                cursorFollower.style.transform = 'scale(0.5)';
+            });
+            
+            element.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursorFollower.style.transform = 'scale(1)';
+            });
+        });
+
+        // Initialize syntax highlighting
+        hljs.highlightAll();
+    </script>
+</body>
+</html> 

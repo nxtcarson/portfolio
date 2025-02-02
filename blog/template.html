@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post Title - Carson's Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Satoshi:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/blog.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+<body>
+    <!-- Particle Container -->
+    <div class="particles" id="particles-js"></div>
+
+    <!-- Custom Cursor Elements -->
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-follower"></div>
+
+    <div class="container">
+        <!-- Blog Post Header -->
+        <header class="blog-header">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Blog
+            </a>
+            <div class="post-meta">
+                <span class="post-date">January 1, 2024</span>
+                <span class="post-category">Development</span>
+            </div>
+            <h1>Your Blog Post Title</h1>
+            <div class="post-tags">
+                <span>#coding</span>
+                <span>#webdev</span>
+                <span>#tutorial</span>
+            </div>
+        </header>
+
+        <!-- Blog Post Content -->
+        <article class="blog-post-content">
+            <!-- Introduction -->
+            <section class="post-section">
+                <p>
+                    Start with an engaging introduction that hooks the reader and explains what they'll learn or discover in this post.
+                </p>
+            </section>
+
+            <!-- Main Content -->
+            <section class="post-section">
+                <h2>Main Section Title</h2>
+                <p>
+                    Your main content goes here. You can include:
+                </p>
+                <ul>
+                    <li>Bullet points for key information</li>
+                    <li>Code snippets using highlight.js</li>
+                    <li>Images and diagrams</li>
+                    <li>Step-by-step instructions</li>
+                </ul>
+
+                <!-- Code Example -->
+                <pre><code class="language-python">
+def hello_world():
+    print("Hello, World!")
+                </code></pre>
+            </section>
+
+            <!-- Additional Sections -->
+            <section class="post-section">
+                <h2>Another Section</h2>
+                <p>
+                    Continue with more sections as needed. Each section should focus on a specific aspect or step.
+                </p>
+            </section>
+
+            <!-- Conclusion -->
+            <section class="post-section">
+                <h2>Conclusion</h2>
+                <p>
+                    Summarize the key points and provide any final thoughts or next steps for the reader.
+                </p>
+            </section>
+        </article>
+
+        <!-- Author Bio -->
+        <div class="author-bio">
+            <img src="../images/profile.jpg" alt="Carson" class="author-image">
+            <div class="author-info">
+                <h3>Written by Carson</h3>
+                <p>A brief bio about yourself and your expertise in the topic.</p>
+            </div>
+        </div>
+
+        <!-- Related Posts -->
+        <div class="related-posts">
+            <h2>Related Posts</h2>
+            <div class="post-grid">
+                <!-- Add related post cards here -->
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Carson. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>
+        // Initialize syntax highlighting
+        hljs.highlightAll();
+
+        // Initialize particle effect
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: '#9c27b0' },
+                shape: { type: 'circle' },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    animation: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+                },
+                size: {
+                    value: 3,
+                    random: true,
+                    animation: { enable: true, speed: 2, size_min: 0.1, sync: false }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#9c27b0',
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: 'none',
+                    random: true,
+                    straight: false,
+                    out_mode: 'out',
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: 'window',
+                events: {
+                    onhover: { enable: true, mode: 'repulse' },
+                    resize: true
+                },
+                modes: {
+                    repulse: { distance: 100, duration: 0.4 }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Custom cursor effect
+        const cursor = document.querySelector('.custom-cursor');
+        const cursorFollower = document.querySelector('.custom-cursor-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                cursorFollower.style.left = e.clientX + 'px';
+                cursorFollower.style.top = e.clientY + 'px';
+            }, 50);
+        });
+
+        document.addEventListener('mousedown', () => {
+            cursor.style.transform = 'scale(0.8)';
+            cursorFollower.style.transform = 'scale(0.5)';
+        });
+
+        document.addEventListener('mouseup', () => {
+            cursor.style.transform = 'scale(1)';
+            cursorFollower.style.transform = 'scale(1)';
+        });
+    </script>
+</body>
+</html> 
